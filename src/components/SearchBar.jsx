@@ -59,11 +59,9 @@ const SearchBar = () => {
           <Typography sx={{ mb: "8px" }}>Car brand</Typography>
           <Autocomplete
             size="18px"
-            multiple
             id="brand"
             disablePortal
             options={brandOptions}
-            limitTags={2}
             disableCloseOnSelect
             getOptionLabel={(option) => option}
             renderOption={(props, option, { selected }) => (

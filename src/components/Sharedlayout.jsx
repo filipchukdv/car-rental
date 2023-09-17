@@ -27,7 +27,7 @@ const Sharedlayout = () => {
   return (
     <>
       <AppBar position="static">
-        <Container maxWidth="lg">
+        <Container maxWidth="md">
           <Toolbar disableGutters>
             <CarRentalIcon
               sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}

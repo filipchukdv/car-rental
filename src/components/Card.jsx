@@ -5,9 +5,9 @@ const Card = ({ data }) => {
   const address = data.address.split(",");
   return (
     <Box
+      component="li"
       sx={{
         width: 274,
-        border: "1px solid black",
         overflow: "hidden",
       }}
     >
@@ -43,7 +43,7 @@ const Card = ({ data }) => {
         sx={{ fontSize: "12px", color: "rgba(18, 20, 23, 0.5)" }}
         mb="28px"
       >
-        {data.mileage} | {data.accessories[0]} | {data.accessories[1]}
+        {data.mileage} | {data.accessories[0]}
       </Typography>
       <Button
         sx={{

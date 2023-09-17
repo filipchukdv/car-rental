@@ -10,6 +10,15 @@ const theme = createTheme({
   typography: {
     fontFamily: "Manrope,sans-serif",
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1275,
+      xl: 1536,
+    },
+  },
 });
 
 function App() {
