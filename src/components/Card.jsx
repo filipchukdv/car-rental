@@ -29,18 +29,28 @@ const Card = ({ data }) => {
         />
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }} mb="8px">
-        <Typography>
+        <Typography sx={{ whiteSpace: "nowrap" }}>
           {data.make}{" "}
           <span style={{ color: "rgba(52, 112, 255, 1)" }}>{data.model}</span>,
           {data.year}
         </Typography>
         <Typography pr="9px">{data.rentalPrice}</Typography>
       </Box>
-      <Typography sx={{ fontSize: "12px", color: "rgba(18, 20, 23, 0.5)" }}>
+      <Typography
+        sx={{
+          fontSize: "12px",
+          color: "rgba(18, 20, 23, 0.5)",
+          whiteSpace: "nowrap",
+        }}
+      >
         {address[1]} | {address[2]} | {data.rentalCompany} | {data.type}
       </Typography>
       <Typography
-        sx={{ fontSize: "12px", color: "rgba(18, 20, 23, 0.5)" }}
+        sx={{
+          fontSize: "12px",
+          color: "rgba(18, 20, 23, 0.5)",
+          whiteSpace: "nowrap",
+        }}
         mb="28px"
       >
         {data.mileage} | {data.accessories[0]}
