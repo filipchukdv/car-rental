@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import Card from "../components/Card";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { fetchAdverts, filterAdverts } from "../api/api";
 
 const Catalog = () => {
@@ -10,6 +10,12 @@ const Catalog = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(8);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
+  const [filterValue, setFilterValue] = useState({
+    brand: null,
+    price: null,
+    mileageFrom: null,
+    mileageTo: null,
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -21,20 +27,23 @@ const Catalog = () => {
 
   useEffect(() => {
     async function filterData() {
-      const response = await filterAdverts(adverts, { page, limit });
+      const response = await filterAdverts(adverts, page, limit, filterValue);
       setfilteredAdverts(response.data);
       const totalAdverts = response.totalAdverts;
       setIsButtonVisible(totalAdverts <= page * limit ? false : true);
     }
     filterData();
-  }, [page, limit, adverts]);
+  }, [adverts, page, limit, filterValue]);
 
   const onClick = () => {
     setPage(page + 1);
   };
   return (
     <>
-      <SearchBar />
+      <SearchBar setFilterValue={setFilterValue} />
+      {filteredAdverts.length === 0 && (
+        <Typography sx={{ textAlign: "center" }}>No match found</Typography>
+      )}
       <Grid
         container
         direction="row"

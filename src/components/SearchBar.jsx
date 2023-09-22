@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import "../index.css";
@@ -15,7 +15,7 @@ import "../index.css";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const SearchBar = () => {
+const SearchBar = ({ setFilterValue }) => {
   const brandOptions = [
     "Buick",
     "Volvo",
@@ -42,6 +42,16 @@ const SearchBar = () => {
   const priceOptions = Array.from(new Array(500 / 10 + 1)).map(
     (_, index) => `${index * 10}$`
   );
+  const [filter, setFilter] = useState({
+    brand: null,
+    price: null,
+    mileageFrom: null,
+    mileageTo: null,
+  });
+
+  const onSubmit = () => {
+    setFilterValue(filter);
+  };
   return (
     <>
       <Container
@@ -58,6 +68,7 @@ const SearchBar = () => {
         <Box component="li">
           <Typography sx={{ mb: "8px" }}>Car brand</Typography>
           <Autocomplete
+            onChange={(e, value) => setFilter({ ...filter, brand: value })}
             size="18px"
             id="brand"
             disablePortal
@@ -88,6 +99,12 @@ const SearchBar = () => {
         <Box component="li">
           <Typography sx={{ mb: "8px" }}>Price/ 1 hour</Typography>
           <Autocomplete
+            onChange={(e, value) =>
+              setFilter({
+                ...filter,
+                price: value ? Number(value.slice(0, -1)) : value,
+              })
+            }
             id="price"
             disablePortal
             options={priceOptions}
@@ -113,8 +130,26 @@ const SearchBar = () => {
         <Box component="li">
           <Typography sx={{ mb: "8px" }}>Car mileage / km</Typography>
           <Box sx={{ display: "flex" }}>
-            <TextField id="from" placeholder="From" />
-            <TextField id="to" placeholder="To" />
+            <TextField
+              id="from"
+              placeholder="From"
+              onChange={(e) =>
+                setFilter({
+                  ...filter,
+                  mileageFrom: e.target.value === "" ? null : e.target.value,
+                })
+              }
+            />
+            <TextField
+              id="to"
+              placeholder="To"
+              onChange={(e) =>
+                setFilter({
+                  ...filter,
+                  mileageTo: e.target.value === "" ? null : e.target.value,
+                })
+              }
+            />
           </Box>
         </Box>
         <Button
@@ -127,6 +162,7 @@ const SearchBar = () => {
             textTransform: "capitalize",
             "&:hover": { bgcolor: " rgba(11, 68, 205, 1) " },
           }}
+          onClick={onSubmit}
         >
           Search
         </Button>
