@@ -14,7 +14,6 @@ export const filterAdverts = (adverts, page, limit, filterValue) => {
     .filter(
       (advert) => Number(advert.rentalPrice.slice(1)) <= price || price === null
     )
-    .filter((advert) => advert.make === brand || brand === null)
     .filter((advert) => advert.mileage >= mileageFrom || mileageFrom === null)
     .filter((advert) => advert.mileage <= mileageTo || mileageTo === null);
 

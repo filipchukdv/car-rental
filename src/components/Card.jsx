@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
+import { Image } from "./Image.styled";
 
 const Card = ({ data }) => {
   const address = data.address.split(",");
@@ -17,15 +18,15 @@ const Card = ({ data }) => {
         sx={{ borderRadius: "14px", overflow: "hidden" }}
         mb="14px"
       >
-        <img
+        <Image
+          src={data.img}
+          alt={`${data.make} ${data.model}`}
           style={{
             display: "block",
             height: "100%",
             width: "100%",
             objectFit: "cover",
           }}
-          src={data.img}
-          alt={`${data.make} ${data.model}`}
         />
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }} mb="8px">
