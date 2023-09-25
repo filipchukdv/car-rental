@@ -15,7 +15,9 @@ export const filterAdverts = (adverts, page, limit, filterValue) => {
       (advert) => Number(advert.rentalPrice.slice(1)) <= price || price === null
     )
     .filter((advert) => advert.make === brand || brand === null)
-    .filter((advert) => advert.make === brand || brand === null);
+    .filter((advert) => advert.mileage >= mileageFrom || mileageFrom === null)
+    .filter((advert) => advert.mileage <= mileageTo || mileageTo === null);
+
   const totalAdverts = filtered.length;
   const result = filtered.slice(0, itemsToShow);
   return { data: result, totalAdverts };

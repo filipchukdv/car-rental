@@ -136,7 +136,8 @@ const SearchBar = ({ setFilterValue }) => {
               onChange={(e) =>
                 setFilter({
                   ...filter,
-                  mileageFrom: e.target.value === "" ? null : e.target.value,
+                  mileageFrom:
+                    e.target.value === "" ? null : Number(e.target.value),
                 })
               }
             />
@@ -146,7 +147,8 @@ const SearchBar = ({ setFilterValue }) => {
               onChange={(e) =>
                 setFilter({
                   ...filter,
-                  mileageTo: e.target.value === "" ? null : e.target.value,
+                  mileageTo:
+                    e.target.value === "" ? null : Number(e.target.value),
                 })
               }
             />
