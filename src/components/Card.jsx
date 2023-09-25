@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { Image } from "./Image.styled";
 
-const Card = ({ data }) => {
+const Card = ({ data, learnMore }) => {
   const address = data.address.split(",");
   return (
     <Box
@@ -65,6 +65,7 @@ const Card = ({ data }) => {
           "&:hover": { bgcolor: " rgba(11, 68, 205, 1) " },
           padding: "12px",
         }}
+        onClick={learnMore}
       >
         Learn more
       </Button>
